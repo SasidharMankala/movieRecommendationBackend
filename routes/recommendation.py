@@ -1,6 +1,11 @@
 from fastapi import APIRouter, HTTPException
 import requests
 import json
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+BEARER_KEY = os.getenv('BEARER_KEY')
 
 
 router = APIRouter()
@@ -11,7 +16,7 @@ def recommend(movieID: int):
 
     headers = {
         "accept": "application/json",
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmYTYwMzg1ZGIyM2QyZDgwNzQ1OTQyYjVmNzhjYWU0NCIsIm5iZiI6MTc0NDA2NzA5NC43MTgwMDAyLCJzdWIiOiI2N2Y0NWExNmUxZDVjMjNjNmVkOTljYjgiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.Gdjnpa_sBv59ZawY1mglwIXPHI287hhzOWc4FjPTRUw"
+        "Authorization": f"Bearer {BEARER_KEY}"
     }
 
     try:
