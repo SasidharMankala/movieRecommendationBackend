@@ -19,8 +19,8 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:3000",  # Next.js default dev server
         "http://127.0.0.1:3000",
-        "https://your-production-domain.com"  # Add your production domain when applicable
     ],
+    allow_origin_regex=r"https:\/\/.*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],  # Allows all methods
     allow_headers=["*"],  # Allows all headers
