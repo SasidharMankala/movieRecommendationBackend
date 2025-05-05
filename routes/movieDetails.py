@@ -31,7 +31,6 @@ def movieDetails(movieID: int):
         movieTitle = response['original_title']
         releaseYear = response['release_date'].split('-')
         rating = round((response['vote_average']/2),2)
-        print(round(rating, 2))
         movieDescription = response['overview']
         cast = response['credits']['cast']
         video = response['videos']['results'][0]['key']
@@ -58,6 +57,5 @@ def movieDetails(movieID: int):
 
         return result
     except Exception as e:
-        print(e)
         raise HTTPException(status_code=500, detail=str(e))
 

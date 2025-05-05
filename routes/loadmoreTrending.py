@@ -37,5 +37,4 @@ def loadmore(page: int = Query(2, ge=1)):
         return finalResponse
 
     except Exception as e:
-        print(e)
         raise HTTPException(status_code=500, detail=str(e))

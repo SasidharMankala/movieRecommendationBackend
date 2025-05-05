@@ -17,7 +17,6 @@ async def loadmore(request: Request, page: int = Query(2, ge=1)):
     GENRE_ID = res["selected_genres"]
     actor = res["selected_actors"]
     ACTORS_ID = "|".join(actor.split(","))
-    # print(ACTORS_ID)
     try:
         url = 'https://api.themoviedb.org/3/discover/movie'
         params = {
@@ -54,8 +53,6 @@ async def loadmore(request: Request, page: int = Query(2, ge=1)):
         resp = requests.get(url, headers=headers, params=params)
         resp.raise_for_status()
         results = resp.json().get("results", [])
-        # print(results)
-        # Extract only id, title, and poster_path
         movies = [
             {"id": m["id"], "title": m["title"], "poster": m["poster_path"]}
             for m in results
@@ -68,5 +65,4 @@ async def loadmore(request: Request, page: int = Query(2, ge=1)):
         return totalMovies
 
     except Exception as e:
-        print(e)
         raise HTTPException(status_code=500, detail=str(e))
